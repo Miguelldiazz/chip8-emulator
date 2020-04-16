@@ -420,7 +420,7 @@ impl Chip {
             0xc => self.rnd(opcode),                       //rnd Vx, byte
             0xd => self.drw(opcode),                       //TODO: collision
             0xe => println!("TODO"),                       //TODO: cosas del teclado
-            0xf => self.other_operation(opcode),           //movidas chungas
+            0xf => self.other_operation(opcode),           //
             _ => println!("Incorrect Opcode"),
         }
     }

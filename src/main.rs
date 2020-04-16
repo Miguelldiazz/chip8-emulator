@@ -11,6 +11,8 @@ pub mod chip;
 use chip::*;
 
 use std::env;
+use std::process;
+use std::path::Path;
 
 use glutin_window::GlutinWindow as Window;
 use opengl_graphics::{GlGraphics, OpenGL};
@@ -71,6 +73,16 @@ impl System {
 fn main() {
     let opengl = OpenGL::V3_2;
     let args: Vec<String> = env::args().collect();
+
+    if args.len() != 2 {
+        println!("Wrong arguments. Run with: cargo run <name of ch8 program>");
+        process::exit(1);
+    } else {
+        if !Path::new(args[1].as_str()).exists() {
+            println!("File not found");
+            process::exit(1);
+        } 
+    }
 
     let mut window: Window = WindowSettings::new("Chip-8", [64 * SIZE as u32, 32 * SIZE as u32])
         .graphics_api(opengl)
